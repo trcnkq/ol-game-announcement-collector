@@ -22,7 +22,7 @@ public class SpeedSpider extends CanonicalSpider{
 	
 	@Override
 	public String getRegex() {
-		return "<li><span>(\\d+)-(\\d+)-(\\d+)</span><a target=\"_blank\" href=\"/webplat/info/112/399/916/list_1.shtml\">\\[公告\\]</a> <a target=\"_blank\" href=\"(.+?)\">(.+?)</a> </li>";
+		return "<li><span>\\s*(\\d+)-(\\d+)-(\\d+)\\s*</span><a target=\"_blank\" href=\"/webplat/info/112/399/916/list_1.shtml\">\\[\\s*公告\\s*\\]</a> <a target=\"_blank\" href=\"(.+?)\">(.+?)</a> </li>";
 	}
 
 	@Override

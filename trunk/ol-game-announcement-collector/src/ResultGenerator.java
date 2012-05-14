@@ -14,18 +14,22 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import bean.Announcement;
+import spider.CFSpider;
 import spider.CSSpider;
 import spider.DNFSpider;
+import spider.SpeedSpider;
 import spider.Spider;
+import bean.Announcement;
 
 
 @SuppressWarnings("unchecked")
 public class ResultGenerator {
 	
 	private Spider[] spiders = {
-			new CSSpider(),
-			new DNFSpider()
+		new CFSpider(),
+		new CSSpider(),
+		new DNFSpider(),
+		new SpeedSpider()
 	};
 
 	private final List<Announcement> res = new ArrayList<Announcement>();
