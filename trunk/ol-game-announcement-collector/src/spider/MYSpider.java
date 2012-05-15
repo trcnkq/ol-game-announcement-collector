@@ -32,7 +32,7 @@ public class MYSpider extends CanonicalSpider {
 
 	@Override
 	public String getHref(Matcher matcher) {
-		return "http://news.91.com/content/" + matcher.group(1) + "/" + matcher.group(2) + "/" +matcher.group(3) + "/" +matcher.group(4);
+		return "http://news.91.com/content/" + matcher.group(1) + "-" + matcher.group(2) + "-" +matcher.group(3) + "/" +matcher.group(4);
 	}
 
 	@Override
