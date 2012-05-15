@@ -12,11 +12,11 @@ import org.apache.commons.httpclient.methods.GetMethod;
 import bean.Announcement;
 
 /**
- * 典型抓取器
+ * 坦克世界
  * @author Isun
  *
  */
-public abstract class TankWorldSpider extends Spider {
+public class WotSpider extends Spider {
 	
 	@Override
 	public List<Announcement> getAnnouncements() {
@@ -26,7 +26,6 @@ public abstract class TankWorldSpider extends Spider {
 		try {
 			httpClient.executeMethod(getMethod);
 			html = getHtml(getMethod, null);
-			html = preProcess(html);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -49,12 +48,9 @@ public abstract class TankWorldSpider extends Spider {
 		return res;
 	}
 	
-	protected abstract String getPageURL();
-	protected abstract String getRegex();
-
-	protected abstract String getTitle(Matcher matcher);
-	protected abstract String getHref(Matcher matcher);
-	protected abstract Date getDate(Matcher matcher);
+	protected String getPageURL() {
+		return "http://wot.kongzhong.com/zixun/zx-gg.html";
+	}
 
 	
 	/**
@@ -64,6 +60,11 @@ public abstract class TankWorldSpider extends Spider {
 	 */
 	protected String preProcess(String html) {
 		return html;
+	}
+
+	@Override
+	public String getGameName() {
+		return "坦克世界";
 	}
 
 }
