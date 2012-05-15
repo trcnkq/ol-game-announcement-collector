@@ -17,10 +17,25 @@ import java.util.concurrent.ConcurrentHashMap;
 import spider.CFSpider;
 import spider.CSSpider;
 import spider.DNFSpider;
+import spider.DNSpider;
+import spider.FsjoySpider;
+import spider.LOLSpider;
+import spider.M3guoSpider;
 import spider.MYSpider;
+import spider.PopkartSpider;
+import spider.QNSpider;
+import spider.QQSMSpider;
+import spider.R2Spider;
 import spider.SpeedSpider;
 import spider.Spider;
+import spider.TL3Spider;
+import spider.Tx3Spider;
+import spider.WDSpider;
 import spider.WotSpider;
+import spider.X5Spider;
+import spider.XY2Spider;
+import spider.XyqSpider;
+import spider.zhuxianSpider;
 import bean.Announcement;
 
 
@@ -33,7 +48,24 @@ public class ResultGenerator {
 		new DNFSpider(),
 		new SpeedSpider(),
 		new WotSpider(),
-		new MYSpider()
+		new MYSpider(),
+		new DNSpider(),
+		new FsjoySpider(),
+		new LOLSpider(),
+		new M3guoSpider(),
+		new PopkartSpider(),
+		new QNSpider(),
+		new QQSMSpider(),
+		new R2Spider(),
+		new TL3Spider(),
+		new Tx3Spider(),
+		new WDSpider(),
+		new X5Spider(),
+		new XY2Spider(),
+		new XyqSpider(),
+		new zhuxianSpider()
+
+		
 	};
 
 	private final List<Announcement> res = new ArrayList<Announcement>();
