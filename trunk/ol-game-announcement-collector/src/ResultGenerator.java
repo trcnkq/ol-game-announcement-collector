@@ -17,6 +17,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import spider.CFSpider;
 import spider.CSSpider;
 import spider.DNFSpider;
+import spider.MYSpider;
 import spider.SpeedSpider;
 import spider.Spider;
 import spider.WotSpider;
@@ -31,7 +32,8 @@ public class ResultGenerator {
 		new CSSpider(),
 		new DNFSpider(),
 		new SpeedSpider(),
-		new WotSpider()
+		new WotSpider(),
+		new MYSpider()
 	};
 
 	private final List<Announcement> res = new ArrayList<Announcement>();
