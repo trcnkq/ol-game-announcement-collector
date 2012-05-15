@@ -19,6 +19,7 @@ import spider.CSSpider;
 import spider.DNFSpider;
 import spider.SpeedSpider;
 import spider.Spider;
+import spider.WotSpider;
 import bean.Announcement;
 
 
@@ -29,7 +30,8 @@ public class ResultGenerator {
 		new CFSpider(),
 		new CSSpider(),
 		new DNFSpider(),
-		new SpeedSpider()
+		new SpeedSpider(),
+		new WotSpider()
 	};
 
 	private final List<Announcement> res = new ArrayList<Announcement>();
@@ -84,6 +86,7 @@ public class ResultGenerator {
 		Writer out = new OutputStreamWriter(fos, "UTF-8");
 		
 		out.write("<html><head>" +
+				"<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />" +
 				"<style type='text/css' title='currentStyle'>" +
 				"@import 'http://datatables.net/release-datatables/media/css/demo_page.css'; @import 'http://datatables.net/media/css/header.ccss';	@import 'http://datatables.net/release-datatables/media/css/demo_table_jui.css';@import 'http://datatables.net/release-datatables/examples/examples_support/themes/smoothness/jquery-ui-1.8.4.custom.css';" +
 				"</style>" +

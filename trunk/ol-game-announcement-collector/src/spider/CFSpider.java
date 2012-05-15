@@ -8,7 +8,6 @@ import java.util.regex.Matcher;
  * @author Leon
  *
  */
-
 public class CFSpider extends CanonicalSpider{
 
 	@Override
