@@ -21,7 +21,7 @@ public class QQSMSpider extends CanonicalSpider {
 	
 	@Override
 	public String getRegex() {
-		return "<li><a target=\"_blank\" href=\"(.+?)\"><i><.+?><.+?>(.+?)</font></span></i><code>(\\d+)-(\\d+)-(\\d+)</code></a></li>";
+		return "<li><a target=\"_blank\" href=\"(.+?)\"><i>(.+?)</i><code>(\\d+)-(\\d+)-(\\d+)</code></a></li>";
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class QQSMSpider extends CanonicalSpider {
 
 	@Override
 	public Date getDate(Matcher matcher) {
-		return getDate(matcher.group(1), matcher.group(2), matcher.group(3));
+		return getDate(matcher.group(3), matcher.group(4), matcher.group(5));
 	}
 
 }
