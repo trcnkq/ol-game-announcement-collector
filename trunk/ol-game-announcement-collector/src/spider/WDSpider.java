@@ -23,22 +23,22 @@ public class WDSpider extends CanonicalSpider {
 	
 	@Override
 	public String getRegex() {
-		return "<li><span>\\[(\\d+)-(\\d+)-(\\d+)\\]</span><a href=\"(.+?)\".+?</em>(.+?)</a>";
+		return "href=\"(/News/NewsDetail.+?)\"\\s*target=\"_blank\">(.+?)</a>[\\s\\S]+?(\\d{4})-(\\d+)-(\\d+)";
 	}
 
 	@Override
 	public String getTitle(Matcher matcher) {
-		return matcher.group(5);
+		return matcher.group(2);
 	}
 
 	@Override
 	public String getHref(Matcher matcher) {
-		return matcher.group(4);
+		return "http://wd.gyyx.cn" + matcher.group(1);
 	}
 
 	@Override
 	public Date getDate(Matcher matcher) {
-		return getDate(matcher.group(1), matcher.group(2), matcher.group(3));
+		return getDate(matcher.group(3), matcher.group(4), matcher.group(5));
 	}
 
 }
