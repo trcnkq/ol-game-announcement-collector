@@ -22,7 +22,7 @@ public class X5Spider extends CanonicalSpider {
 	
 	@Override
 	public String getRegex() {
-		return "<li><span>\\s*(\\d+)-(\\d+)-(\\d+)\\s*</span><a target=\"_blank\" href=\".+?\">[\\s*公告\\s*]</a> <a target=\"_blank\" href=\"(.+?)\">(.+?)</a> </li>";
+		return "<li><span>\\s*(\\d+)-(\\d+)-(\\d+)\\s*</span><a target=\"_blank\" href=\".+?\">\\[\\s*公告\\s*\\]</a> <a target=\"_blank\" href=\"(.+?)\">(.+?)</a> </li>";
 	}
 
 	@Override
