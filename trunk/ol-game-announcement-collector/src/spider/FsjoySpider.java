@@ -17,7 +17,7 @@ public class FsjoySpider extends CanonicalSpider {
 	
 	@Override
 	public String getPageURL() {
-		return "http://www.fsjoy.com/fs2012/news/news3.html";
+		return "http://www.fsjoy.com/news/uploadHtml/fs/115087/290_1.html";
 	}
 	
 	@Override
