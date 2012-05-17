@@ -14,27 +14,39 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import spider.C9Spider;
 import spider.CFSpider;
 import spider.CSSpider;
 import spider.DNFSpider;
 import spider.DNSpider;
+import spider.DT2Spider;
+import spider.ELSSpider;
 import spider.FsjoySpider;
 import spider.LOLSpider;
 import spider.M3guoSpider;
+import spider.MHSpider;
 import spider.MYSpider;
 import spider.PopkartSpider;
 import spider.QNSpider;
 import spider.QQSMSpider;
+import spider.QQhxsjSpider;
+import spider.QQxxzSpider;
 import spider.R2Spider;
+import spider.SWSpider;
+import spider.SgqqSpider;
 import spider.SpeedSpider;
 import spider.Spider;
 import spider.TL3Spider;
 import spider.Tx3Spider;
+import spider.W2ISpider;
 import spider.WDSpider;
+import spider.WooolSpider;
 import spider.WotSpider;
 import spider.X5Spider;
+import spider.XCBSpider;
 import spider.XY2Spider;
 import spider.XyqSpider;
+import spider.YZSpider;
 import spider.zhuxianSpider;
 import bean.Announcement;
 
@@ -63,7 +75,20 @@ public class ResultGenerator {
 		new X5Spider(),
 		new XY2Spider(),
 		new XyqSpider(),
-		new zhuxianSpider()
+		new zhuxianSpider(),
+		new LOLSpider(),
+		new YZSpider(),
+		new XCBSpider(),
+		new WooolSpider(),
+		new W2ISpider(),
+		new SWSpider(),
+		new SgqqSpider(),
+		new QQxxzSpider(),
+		new QQhxsjSpider(),
+		new MHSpider(),
+		new ELSSpider(),
+		new DT2Spider(),
+		new C9Spider()
 
 		
 	};
