@@ -12,85 +12,24 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import spider.C9Spider;
-import spider.CFSpider;
-import spider.CSSpider;
-import spider.DNFSpider;
-import spider.DNSpider;
-import spider.DT2Spider;
-import spider.ELSSpider;
-import spider.FsjoySpider;
-import spider.LOLSpider;
-import spider.M3guoSpider;
-import spider.MHSpider;
-import spider.MYSpider;
-import spider.PopkartSpider;
-import spider.QNSpider;
-import spider.QQSMSpider;
-import spider.QQhxsjSpider;
-import spider.QQxxzSpider;
-import spider.R2Spider;
-import spider.SWSpider;
-import spider.SgqqSpider;
-import spider.SpeedSpider;
+import org.springframework.beans.factory.config.BeanDefinition;
+import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
+import org.springframework.core.type.filter.AssignableTypeFilter;
+
 import spider.Spider;
-import spider.TL3Spider;
-import spider.Tx3Spider;
-import spider.W2ISpider;
-import spider.WDSpider;
-import spider.WooolSpider;
-import spider.WotSpider;
-import spider.X5Spider;
-import spider.XCBSpider;
-import spider.XY2Spider;
-import spider.XyqSpider;
-import spider.YZSpider;
-import spider.zhuxianSpider;
 import bean.Announcement;
 
 
 @SuppressWarnings("unchecked")
 public class ResultGenerator {
 	
+	/**
+	 * 为空则使用所有spiders,否则使用该处指定spiders
+	 */
 	private Spider[] spiders = {
-		new CFSpider(),
-		new CSSpider(),
-		new DNFSpider(),
-		new SpeedSpider(),
-		new WotSpider(),
-		new MYSpider(),
-		new DNSpider(),
-		new FsjoySpider(),
-		new LOLSpider(),
-		new M3guoSpider(),
-		new PopkartSpider(),
-		new QNSpider(),
-		new QQSMSpider(),
-		new R2Spider(),
-		new TL3Spider(),
-		new Tx3Spider(),
-		new WDSpider(),
-		new X5Spider(),
-		new XY2Spider(),
-		new XyqSpider(),
-		new zhuxianSpider(),
-		new LOLSpider(),
-		new YZSpider(),
-		new XCBSpider(),
-		new WooolSpider(),
-		new W2ISpider(),
-		new SWSpider(),
-		new SgqqSpider(),
-		new QQxxzSpider(),
-		new QQhxsjSpider(),
-		new MHSpider(),
-		new ELSSpider(),
-		new DT2Spider(),
-		new C9Spider()
-
-		
 	};
 
 	private final List<Announcement> res = new ArrayList<Announcement>();
@@ -98,7 +37,23 @@ public class ResultGenerator {
 	////////////////////////////////////////////////////////////////////
 	
 	
-	private void genarate() throws FileNotFoundException, UnsupportedEncodingException {
+	private void genarate() throws FileNotFoundException, UnsupportedEncodingException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+		
+		if (spiders.length == 0) {
+			List<Spider> spiderList = new ArrayList<Spider>();
+			
+			ClassPathScanningCandidateComponentProvider provider = new ClassPathScanningCandidateComponentProvider(true);
+			provider.addIncludeFilter(new AssignableTypeFilter(Spider.class));
+			
+			Set<BeanDefinition> components = provider.findCandidateComponents("spider");
+			for (BeanDefinition component : components) {
+				Class clazz = Class.forName(component.getBeanClassName());
+				spiderList.add((Spider) clazz.newInstance());
+			}
+			spiders = spiderList.toArray(new Spider[0]);
+		}
+
+		
 		final Map counter = new ConcurrentHashMap();
 		final Date begin = new Date();
 		
@@ -166,7 +121,7 @@ public class ResultGenerator {
 
 	///////////////////////////////////////////////////////////
 	
-	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException {
+	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ClassNotFoundException, InstantiationException, IllegalAccessException {
 		ResultGenerator rg = new ResultGenerator();
 		rg.genarate();
 	}
