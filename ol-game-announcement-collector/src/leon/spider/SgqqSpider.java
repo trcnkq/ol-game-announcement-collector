@@ -22,7 +22,7 @@ public class SgqqSpider extends CanonicalSpider {
 	
 	@Override
 	public String getRegex() {
-		return "<span>(\\d+)-(\\d+)-(\\d+)</span>\\s*<a target=\"_blank\" href=\".+?\">.+?</a>\\s*<a target=\"_blank\" href=\"(.+?)\"><.+?><B>(.+?)</B></font></a>";
+		return "<span>(\\d+)-(\\d+)-(\\d+)</span>\\s*<a target=\"_blank\" href=\".+?\">.+?</a>\\s*<a target=\"_blank\" href=\"(.+?)\">(.+?)</a>";
 	}
 
 	@Override

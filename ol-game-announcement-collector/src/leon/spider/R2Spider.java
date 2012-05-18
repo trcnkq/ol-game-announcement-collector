@@ -22,7 +22,7 @@ public class R2Spider extends CanonicalSpider {
 	
 	@Override
 	public String getRegex() {
-		return "<li><span>\\[(\\d+)-(\\d+)-(\\d+)\\]</span><em>&nbsp;<img src=.+?</a>　<a href=\"(.+?)\" ><font color=.+?><B>(.+?)</B></font></a></em> </li>";
+		return "<li><span>\\[(\\d+)-(\\d+)-(\\d+)\\]</span><em>&nbsp;<img src=.+?</a>　<a href=\"(.+?)\" >(.+?)</a></em> </li>";
 	}
 
 	@Override
