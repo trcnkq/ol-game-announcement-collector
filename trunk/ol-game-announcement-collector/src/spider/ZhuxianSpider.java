@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
  *
  */
 
-public class zhuxianSpider extends CanonicalSpider {
+public class ZhuxianSpider extends CanonicalSpider {
 	@Override
 	public String getGameName() {
 		return "诛仙2";
