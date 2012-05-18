@@ -22,7 +22,7 @@ public class YZSpider extends CanonicalSpider {
 	
 	@Override
 	public String getRegex() {
-		return "<ul><li><span class=date>\\[(\\d+)-(\\d+)-(\\d+)\\]</span><img src=.+?> <a href=(.+?)>(.+?)</a></li>";
+		return "<li><span class=date>\\[(\\d+)-(\\d+)-(\\d+)\\]</span><img src=.+?> <a href=(.+?)>(.+?)</a></li>";
 	}
 
 	@Override
