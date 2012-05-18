@@ -1,11 +1,9 @@
 package leon.generator;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,9 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 import leon.model.Announcement;
 import leon.spider.Spider;
@@ -36,10 +32,15 @@ public class ResultGenerator {
 
 	private final List<Announcement> res = new ArrayList<Announcement>();
 	
+	Integer cnt = 0;
+	
+	final boolean[] lock = new boolean[0]; 
+
+	
 	////////////////////////////////////////////////////////////////////
 	
 	
-	private void genarate() throws FileNotFoundException, UnsupportedEncodingException, ClassNotFoundException, InstantiationException, IllegalAccessException {
+	private void genarate() throws ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException, IOException {
 		
 		if (spiders.length == 0) {
 			List<Spider> spiderList = new ArrayList<Spider>();
@@ -56,34 +57,38 @@ public class ResultGenerator {
 		}
 
 		
-		final Map counter = new ConcurrentHashMap();
-		final Date begin = new Date();
-		
+		long begin = System.currentTimeMillis();
 		for (final Spider spider : spiders) {
-			new Thread(new Runnable() {
-				@Override
-				public void run() {
-					System.out.println(spider.getGameName() + " 开始抓取...");
-					
-					Date spiderBegin = new Date();
+			new SpiderThread(spider).start();
+		}
+		synchronized(lock) {
+			while(cnt < spiders.length) {
+				lock.wait();
+			}
+		}
+		printHtml();
+		System.out.println("\n抓取完毕，总共用时: " + (System.currentTimeMillis() - begin) + "ms");
+	}
+	
+	class SpiderThread extends Thread {
+		Spider spider;
+		
+		public SpiderThread(Spider spider) {
+			this.spider = spider;
+		}
+		
+		@Override
+		public void run() {
+			Date spiderBegin = new Date();
+			System.out.println("[" + spider.getGameName() + "] 开始抓取...");
+			List tmp = spider.getAnnouncements();
+			res.addAll(tmp);
 
-					List tmp = spider.getAnnouncements();
-					res.addAll(tmp);
-					counter.put(spider.getClass(), 1);
-					
-					System.out.println(spider.getGameName() + " 抓取完毕，用时 " + (new Date().getTime() - spiderBegin.getTime()) + "ms, 共 " + tmp.size() + " 条");
-					System.out.println("总进度: " + counter.size() + "/" + spiders.length);
-
-					if (counter.size() == spiders.length) {
-						try {
-							printHtml();
-						} catch (IOException e) {
-							e.printStackTrace();
-						}
-						System.out.println("\n抓取完毕，总共用时: " + (new Date().getTime() - begin.getTime()) + "ms");
-					}
-				}
-			}).start();
+			synchronized(lock) {
+				++cnt;
+				System.out.println("[" + spider.getGameName() + "] 抓取完毕，用时 " + (new Date().getTime() - spiderBegin.getTime()) + "ms, 共 " + tmp.size() + " 条, 总进度: " + cnt + "/" + spiders.length);
+				lock.notify();
+			}
 		}
 	}
 	
@@ -123,9 +128,8 @@ public class ResultGenerator {
 
 	///////////////////////////////////////////////////////////
 	
-	public static void main(String[] args) throws FileNotFoundException, UnsupportedEncodingException, ClassNotFoundException, InstantiationException, IllegalAccessException {
-		ResultGenerator rg = new ResultGenerator();
-		rg.genarate();
+	public static void main(String[] args) throws ClassNotFoundException, InstantiationException, IllegalAccessException, InterruptedException, IOException {
+		new ResultGenerator().genarate();
 	}
 
 }
