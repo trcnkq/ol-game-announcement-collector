@@ -22,7 +22,7 @@ public class DT2Spider extends CanonicalSpider {
 	
 	@Override
 	public String getRegex() {
-		return "</span><span class=\"link\"><a href=\"(.+?)\">(.+?)</a></span><span class=\"date\">\\[(\\d+)-(\\d+)-(\\d+)\\]</span></li>";
+		return "</span><span class=\"link\"><a href=\"(.+?)\">(.+?)</a></span><span class=\"date\">\\[(\\d+)/(\\d+)/(\\d+)\\]</span></li>";
 	}
 
 	@Override
