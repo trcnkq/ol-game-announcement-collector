@@ -9,7 +9,7 @@ import java.util.regex.Matcher;
  *
  */
 public class C9Spider extends CanonicalSpider {
-
+	
 	@Override
 	public String getGameName() {
 		return "第九大陆";
