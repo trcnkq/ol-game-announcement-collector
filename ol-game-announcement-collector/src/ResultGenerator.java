@@ -23,7 +23,6 @@ import spider.Spider;
 import bean.Announcement;
 
 
-@SuppressWarnings("unchecked")
 public class ResultGenerator {
 	
 	/**
